@@ -4,7 +4,8 @@ export default defineConfig({
   base: "./",
   plugins: [react()],
   build: {
-    outDir: "~/domains/portfolio.skr.smallhost.pl/public_html/ecommerce-admin",
+    outDir:
+      "/home/skr/domains/portfolio.skr.smallhost.pl/public_html/ecommerce-admin",
     emptyOutDir: true,
   },
 });
