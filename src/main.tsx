@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   NavLink,
@@ -70,7 +70,9 @@ function App() {
     [detailId, setDetailId] = React.useState<string | null>(null),
     [mobileOpen, setMobileOpen] = React.useState(false),
     [profileMenuOpen, setProfileMenuOpen] = React.useState(false),
-    [profileMenuSource, setProfileMenuSource] = React.useState<"header" | "sidebar">("header"),
+    [profileMenuSource, setProfileMenuSource] = React.useState<
+      "header" | "sidebar"
+    >("header"),
     profileMenuRef = React.useRef<HTMLDivElement>(null),
     sidebarProfileMenuRef = React.useRef<HTMLDivElement>(null),
     [dark, setDark] = React.useState(
@@ -286,7 +288,8 @@ function App() {
             candidate.id === String(fd.get(`product-${index}`) || ""),
         );
         const quantity = Number(fd.get(`quantity-${index}`));
-        if (!product || !Number.isInteger(quantity) || quantity < 1) return null;
+        if (!product || !Number.isInteger(quantity) || quantity < 1)
+          return null;
         return {
           productId: product.id,
           productName: product.name,
@@ -551,7 +554,9 @@ function App() {
             <span>/</span> <b>{t(title)}</b>
           </div>
           <div className="tools">
-            <div className={"search" + (mobileSearchOpen ? " search-open" : "")}>
+            <div
+              className={"search" + (mobileSearchOpen ? " search-open" : "")}
+            >
               <Search className="desktop-search-icon" size={17} />
               <button
                 type="button"
@@ -607,14 +612,18 @@ function App() {
               }}
             >
               <Bell size={19} />
-              {db.Notifications?.some((notification) => notification.status === "Unread") && <em />}
+              {db.Notifications?.some(
+                (notification) => notification.status === "Unread",
+              ) && <em />}
             </button>
             <div className="profile-menu-wrap" ref={profileMenuRef}>
               <button
                 className="avatar profile-trigger"
                 aria-label={t("Profile")}
                 aria-haspopup="menu"
-                aria-expanded={profileMenuOpen && profileMenuSource === "header"}
+                aria-expanded={
+                  profileMenuOpen && profileMenuSource === "header"
+                }
                 onClick={() => {
                   if (profileMenuOpen && profileMenuSource === "header") {
                     setProfileMenuOpen(false);
@@ -748,7 +757,9 @@ function App() {
                     >
                       <option value="All">{t("All_payment_statuses")}</option>
                       {["Pending", "Paid", "Refunded"].map((status) => (
-                        <option key={status} value={status}>{t(status)}</option>
+                        <option key={status} value={status}>
+                          {t(status)}
+                        </option>
                       ))}
                     </select>
                     <label className="order-date-filter">
@@ -807,7 +818,9 @@ function App() {
                   >
                     <option value="All">{t("All_categories")}</option>
                     {db.Categories.map((c) => (
-                      <option key={c.id} value={c.name}>{categoryName(c.name)}</option>
+                      <option key={c.id} value={c.name}>
+                        {categoryName(c.name)}
+                      </option>
                     ))}
                   </select>
                 )}
@@ -841,7 +854,9 @@ function App() {
                   <option value="All">{t("All")}</option>
                   {Array.from(new Set<string>(rows.map((r) => r.status))).map(
                     (s) => (
-                      <option key={s} value={s}>{t(s.replace(/ /g, "_"))}</option>
+                      <option key={s} value={s}>
+                        {t(s.replace(/ /g, "_"))}
+                      </option>
                     ),
                   )}
                 </select>
@@ -910,16 +925,16 @@ function App() {
                                           : c === t("Reorder_point")
                                             ? "threshold"
                                             : c === t("Date")
-                                            ? "date"
-                                            : c === t("Payment_header")
-                                              ? "paymentStatus"
-                                              : c === t("Email")
-                                                ? "email"
-                                                : c === t("Value")
-                                                  ? "price"
-                                                  : c === t("Ends")
-                                                    ? "expiresAt"
-                                                    : "status";
+                                              ? "date"
+                                              : c === t("Payment_header")
+                                                ? "paymentStatus"
+                                                : c === t("Email")
+                                                  ? "email"
+                                                  : c === t("Value")
+                                                    ? "price"
+                                                    : c === t("Ends")
+                                                      ? "expiresAt"
+                                                      : "status";
                                 if (sortField === field)
                                   setSortDirection((v) =>
                                     v === "asc" ? "desc" : "asc",
@@ -966,7 +981,7 @@ function App() {
                                 <img
                                   className="product-thumb"
                                   src={
-                                    "/products/" +
+                                    "./products/" +
                                     (r.imageKey ||
                                       [
                                         "headphones",
@@ -1497,7 +1512,9 @@ function App() {
                       "coffee",
                       "charger",
                     ].map((k) => (
-                      <option key={k} value={k}>{k}</option>
+                      <option key={k} value={k}>
+                        {k}
+                      </option>
                     ))}
                   </select>
                 </label>
@@ -1523,7 +1540,9 @@ function App() {
                     }
                   >
                     {db.Categories.map((c) => (
-                      <option key={c.id} value={c.name}>{categoryName(c.name)}</option>
+                      <option key={c.id} value={c.name}>
+                        {categoryName(c.name)}
+                      </option>
                     ))}
                   </select>
                 </label>
@@ -1606,9 +1625,9 @@ function App() {
   );
 }
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="*" element={<App />} />
     </Routes>
-  </BrowserRouter>,
+  </HashRouter>,
 );
