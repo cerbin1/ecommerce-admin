@@ -5,17 +5,11 @@ A React and TypeScript admin dashboard for managing an ecommerce storefront. The
 ## Requirements
 
 - Node.js compatible with the installed Vite version
-- Yarn or npm
+- npm
 
 ## Getting started
 
-Install dependencies with Yarn:
-
-```sh
-yarn install
-```
-
-Or use npm:
+Install dependencies:
 
 ```sh
 npm install
@@ -24,13 +18,13 @@ npm install
 Start the development server:
 
 ```sh
-yarn dev
+npm run dev
 ```
 
-For npm, use `npm run dev`. Vite prints the local URL in the terminal.
+Vite prints the local URL in the terminal.
 
 ## Scripts
 
-- `yarn dev` — start the Vite development server (`npm run dev`)
-- `yarn build` — create a production build in `dist/` (`npm run build`)
-- `yarn lint` — run the configured build check (`npm run lint`)
+- `npm run dev` — start the Vite development server
+- `npm run build` — create a production build in `dist/`
+- `npm run lint` — run the configured build check
